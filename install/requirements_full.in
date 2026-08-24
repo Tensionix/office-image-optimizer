@@ -1,0 +1,28 @@
+# Builder / portable environment
+pip-tools
+requests
+tqdm
+pydantic
+setuptools
+wheel
+packaging
+
+# Office image optimizer runtime
+Pillow
+
+# GUI shell runtime
+nicegui
+pywebview
+pyyaml
+rich
+
+# Documents / helper tooling
+python-docx
+lxml
+markdown-it-py
+
+# Test and audit layer
+pytest
+# NiceGUI's headless `user` fixture parses the rendered page with BeautifulSoup;
+# the Screen fixture would need selenium and is deliberately not used.
+beautifulsoup4

@@ -1,0 +1,36 @@
+{
+  "schema": "audion.build_licenses.pack_manifest.v1",
+  "generated_utc": "2026-08-24T17:44:20Z",
+  "run_id": "20260824T174412Z_audion-office-image-optimizer_748f9dde",
+  "project_id": "audion-office-image-optimizer",
+  "project_name": "Audion Office Image Optimizer",
+  "scan_root": "S:\\Release\\Audion Office Image Optimizer",
+  "output_dir": "S:\\Release\\Audion Office Image Optimizer\\licenses",
+  "files": [
+    {
+      "name": "THIRD_PARTY_NOTICES.txt",
+      "sha256": "490b0965033abf8c8b9c5214818fdf60abd11c4228866c5ffa1b95ca71c4e421",
+      "size": 525608
+    },
+    {
+      "name": "SOURCE_CODE_AVAILABILITY.txt",
+      "sha256": "c78bbefd2db02d0d773566f25356bb5464ddfcd5f908c7e22bdb6d825b01a419",
+      "size": 1240
+    },
+    {
+      "name": "COMPONENTS.json",
+      "sha256": "f4b98aead29f814cf70de7e691651e6d215414437366c2bbb34e25865da6e1e0",
+      "size": 143754
+    },
+    {
+      "name": "_records.json",
+      "sha256": "f42b21812f14f098577568e4d215bbe8daf21ebd3e2615b4231ac83caebf4219",
+      "size": 35298
+    },
+    {
+      "name": "LICENSE_SCAN_REPORT.md",
+      "sha256": "9c65a1314543438494c28b9f5b25915ebc8f0c7e9a7a63e7503bb2a67287ea56",
+      "size": 5532
+    }
+  ]
+}

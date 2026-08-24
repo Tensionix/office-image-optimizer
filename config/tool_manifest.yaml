@@ -1,0 +1,367 @@
+tool:
+  id: audion_office_image_optimizer
+  name: "Audion Office Image Optimizer"
+  category: "Office"
+  version: "0.1.0-alpha"
+
+ui:
+  title: "Audion Office Image Optimizer"
+  host: "127.0.0.1"
+  port: 8080
+  native: false
+  reload: false
+  open_browser: false
+
+module_io_fields: &module_io_fields
+  - id: input_path
+    type: "folder"
+    group: "source"
+    label: "SOURCE"
+    label_ru: "ИСТОЧНИК"
+    hint: "Optional. Leave empty to use the default input folder."
+    hint_ru: "Необязательно. Оставь пустым, чтобы использовать стандартную папку input."
+    placeholder: "input"
+    default: ""
+    omit_if_empty: true
+
+  - id: output_path
+    type: "folder"
+    group: "output"
+    label: "DESTINATION"
+    label_ru: "ПРИЁМНИК"
+    hint: "Optional. Leave empty to use the default output folder."
+    hint_ru: "Необязательно. Оставь пустым, чтобы использовать стандартную папку output."
+    placeholder: "output"
+    default: ""
+    omit_if_empty: true
+    show_new_folder_button: true
+
+fit_size_fields: &fit_size_fields
+  - id: input_path
+    type: "folder"
+    group: "source"
+    label: "SOURCE"
+    label_ru: "ИСТОЧНИК"
+    hint: "Optional. Leave empty to use the default input folder."
+    hint_ru: "Необязательно. Оставь пустым, чтобы использовать стандартную папку input."
+    placeholder: "input"
+    default: ""
+    omit_if_empty: true
+
+  - id: output_path
+    type: "folder"
+    group: "output"
+    label: "DESTINATION"
+    label_ru: "ПРИЁМНИК"
+    hint: "Optional. Leave empty to use the default output folder."
+    hint_ru: "Необязательно. Оставь пустым, чтобы использовать стандартную папку output."
+    placeholder: "output"
+    default: ""
+    omit_if_empty: true
+    show_new_folder_button: true
+
+  - id: target_mb
+    type: "number"
+    group: "compression"
+    label: "Target size, MB"
+    label_ru: "Целевой размер, МБ"
+    hint: "The tool tries HARD JPG passes: quality to 75, resolution to 1920x1080, then JPEG 65 down to 1280x720."
+    hint_ru: "Подбирает HARD JPG: качество до 75, разрешение до 1920x1080, затем JPEG 65 до 1280x720."
+    default: 20
+    min: 1
+    max: 500
+    step: 1
+
+optimization_fields: &optimization_fields
+  - id: input_path
+    type: "folder"
+    group: "source"
+    label: "SOURCE"
+    label_ru: "ИСТОЧНИК"
+    hint: "Optional. Leave empty to use the default input folder."
+    hint_ru: "Необязательно. Оставь пустым, чтобы использовать стандартную папку input."
+    placeholder: "input"
+    default: ""
+    omit_if_empty: true
+
+  - id: output_path
+    type: "folder"
+    group: "output"
+    label: "DESTINATION"
+    label_ru: "ПРИЁМНИК"
+    hint: "Optional. Leave empty to use the default output folder."
+    hint_ru: "Необязательно. Оставь пустым, чтобы использовать стандартную папку output."
+    placeholder: "output"
+    default: ""
+    omit_if_empty: true
+    show_new_folder_button: true
+
+  - id: resolution_mode
+    type: "radio"
+    group: "size_mode"
+    label: "Size mode"
+    label_ru: "Как задать размер"
+    hint: "Standard mode is simpler. Custom mode is for manual limits."
+    hint_ru: "Готовые размеры проще. Свой размер нужен для ручного ограничения."
+    default: "preset"
+    refresh_on_change: true
+    options:
+      - value: "preset"
+        label: "Standard resolutions"
+        label_ru: "Готовые размеры"
+      - value: "custom"
+        label: "Custom size"
+        label_ru: "Свой размер"
+
+  - id: image_limit
+    type: "radio"
+    group: "resolution"
+    label: "Resolution"
+    label_ru: "Разрешение"
+    hint: "Maximum image dimensions. Processing mode is HARD."
+    hint_ru: "Максимальный размер картинки. Режим обработки: HARD."
+    default: "1920x1080"
+    visible_when:
+      field: "resolution_mode"
+      equals: "preset"
+    options:
+      - value: "1920x1080"
+        label: "1920x1080 - ordinary document"
+        label_ru: "1920x1080 - обычный документ"
+      - value: "2560x1440"
+        label: "2560x1440 - presentation"
+        label_ru: "2560x1440 - презентации"
+      - value: "3840x2160"
+        label: "3840x2160 - print / archive"
+        label_ru: "3840x2160 - печать / архив"
+
+  - id: jpeg_quality
+    type: "integer"
+    group: "compression"
+    label: "JPEG quality"
+    label_ru: "Качество JPEG"
+    hint: "Lower value compresses more. Default 82 is the balanced mode."
+    hint_ru: "Меньше значение - сильнее сжатие. 82 - сбалансированный режим."
+    default: 82
+    min: 40
+    max: 95
+    step: 1
+
+  - id: custom_width
+    type: "integer"
+    group: "expert_resolution"
+    label: "Custom width"
+    label_ru: "Ширина"
+    hint: "Used only in experienced mode. Minimum 400 px."
+    hint_ru: "Используется только в опытном режиме. Минимум 400 px."
+    default: ""
+    min: 400
+    max: 20000
+    step: 100
+    omit_if_empty: true
+    visible_when:
+      field: "resolution_mode"
+      equals: "custom"
+
+  - id: custom_height
+    type: "integer"
+    group: "expert_resolution"
+    label: "Custom height"
+    label_ru: "Высота"
+    hint: "Used only in experienced mode. Minimum 400 px."
+    hint_ru: "Используется только в опытном режиме. Минимум 400 px."
+    default: ""
+    min: 400
+    max: 20000
+    step: 100
+    omit_if_empty: true
+    visible_when:
+      field: "resolution_mode"
+      equals: "custom"
+
+  - id: min_skip_width
+    type: "integer"
+    group: "expert_resolution"
+    label: "Tiny PNG width"
+    label_ru: "Мелкие PNG: ширина"
+    hint: "Tiny PNG images up to this size are kept. Use 0 to disable."
+    hint_ru: "PNG до этого размера остаются как есть. 0 отключает правило."
+    default: 400
+    min: 0
+    max: 4000
+    step: 50
+    visible_when:
+      field: "resolution_mode"
+      equals: "custom"
+
+  - id: min_skip_height
+    type: "integer"
+    group: "expert_resolution"
+    label: "Tiny PNG height"
+    label_ru: "Мелкие PNG: высота"
+    hint: "Tiny PNG images up to this size are kept. Use 0 to disable."
+    hint_ru: "PNG до этого размера остаются как есть. 0 отключает правило."
+    default: 400
+    min: 0
+    max: 4000
+    step: 50
+    visible_when:
+      field: "resolution_mode"
+      equals: "custom"
+
+  - id: expert_mode
+    type: "radio"
+    group: "expert_resolution"
+    label: "Processing mode"
+    label_ru: "Режим обработки"
+    hint: "Used only in experienced mode. Standard resolutions always use HARD."
+    hint_ru: "Используется только в опытном режиме. Готовые разрешения всегда работают в HARD."
+    default: "hard"
+    visible_when:
+      field: "resolution_mode"
+      equals: "custom"
+    options:
+      - value: "hard"
+        label: "HARD"
+        label_ru: "HARD"
+      - value: "safe"
+        label: "SAFE"
+        label_ru: "SAFE"
+
+operation_groups:
+  - id: analysis
+    title: "Analysis"
+    title_ru: "Проверка документов"
+    description: "Read-only commands for DOCX/PPTX files in input."
+    description_ru: "Посмотреть, что внутри DOCX/PPTX, и оценить результат без изменения файлов."
+    fields: *module_io_fields
+    children:
+      - id: scan_input
+        title: "Scan only"
+        title_ru: "Что внутри файлов"
+        description: "Analyze every DOCX/PPTX in input and print media recommendations."
+        description_ru: "Показывает встроенные картинки во всех DOCX/PPTX из input: путь внутри Office-файла, формат, размер в пикселях, прозрачность и базовую рекомендацию. Ничего не меняет."
+        service: "system_core.services.image_optimizer_service:run_cli_for_input"
+        kind: "safe"
+        parameters:
+          command: "scan"
+
+      - id: ask_hard_uhd_report
+        title: "Preview balanced optimization"
+        title_ru: "Примерить баланс"
+        description: "Choose before processing: shows what the balanced presentation preset would touch."
+        description_ru: "Выбирай перед запуском: покажет, что тронет сбалансированный пресет для презентаций."
+        service: "system_core.services.image_optimizer_service:run_cli_for_input"
+        kind: "safe"
+        parameters:
+          command: "ask"
+          mode: "hard"
+          preset: "presentation"
+
+  - id: optimize
+    title: "Optimize"
+    title_ru: "Сжатие картинок"
+    description: "Compress embedded images to the selected maximum resolution."
+    description_ru: "Сжать встроенные картинки до выбранного максимального разрешения."
+    service: "system_core.services.image_optimizer_service:run_cli_for_input"
+    kind: "safe"
+    fields: *optimization_fields
+    parameters:
+      command: "batch"
+      mode: "hard"
+      preset: "custom"
+
+  - id: fit_size
+    title: "Fit to size"
+    title_ru: "Уложиться в размер"
+    description: "Automatically fit each output document under the target size using HARD JPG passes."
+    description_ru: "Автоматически подогнать документ под целевой размер: HARD JPG, качество, затем разрешение."
+    service: "system_core.services.image_optimizer_service:run_cli_for_input"
+    kind: "safe"
+    fields: *fit_size_fields
+    parameters:
+      command: "fit-size"
+      target_mb: 20
+
+  - id: color_profiles
+    title: "Color profiles"
+    title_ru: "Цветовые профили"
+    description: "Normalize embedded raster images through Pillow CMS."
+    description_ru: "Привести встроенные картинки к sRGB или CMYK через Pillow CMS."
+    fields: *module_io_fields
+    children:
+      - id: normalize_srgb
+        title: "Normalize sRGB"
+        title_ru: "В sRGB"
+        description: "Compact sRGB normalization for every input document."
+        description_ru: "Компактно нормализовать картинки в sRGB без вшивания ICC."
+        service: "system_core.services.image_optimizer_service:run_cli_for_input"
+        kind: "safe"
+        parameters:
+          command: "normalize-srgb"
+
+      - id: normalize_srgb_icc
+        title: "sRGB + ICC"
+        title_ru: "В sRGB + ICC"
+        description: "Normalize to sRGB and embed the target ICC profile."
+        description_ru: "Нормализовать в sRGB и встроить целевой ICC-профиль."
+        service: "system_core.services.image_optimizer_service:run_cli_for_input"
+        kind: "safe"
+        parameters:
+          command: "normalize-srgb"
+          embed_icc: true
+
+      - id: normalize_cmyk
+        title: "Normalize CMYK"
+        title_ru: "В CMYK"
+        description: "Compact CMYK normalization for every input document."
+        description_ru: "Компактно нормализовать картинки в CMYK без вшивания ICC."
+        service: "system_core.services.image_optimizer_service:run_cli_for_input"
+        kind: "safe"
+        parameters:
+          command: "normalize-cmyk"
+
+      - id: normalize_cmyk_icc
+        title: "CMYK + ICC"
+        title_ru: "В CMYK + ICC"
+        description: "Normalize to CMYK and embed the target ICC profile."
+        description_ru: "Нормализовать в CMYK и встроить целевой ICC-профиль."
+        service: "system_core.services.image_optimizer_service:run_cli_for_input"
+        kind: "safe"
+        parameters:
+          command: "normalize-cmyk"
+          embed_icc: true
+
+  - id: media_tools
+    title: "Media tools"
+    title_ru: "Извлечение картинок"
+    description: "Extract embedded image parts without changing source documents."
+    description_ru: "Достать встроенные файлы из word/media и ppt/media без изменения DOCX/PPTX."
+    fields: *module_io_fields
+    children:
+      - id: extract_media
+        title: "Extract media"
+        title_ru: "Извлечь картинки"
+        description: "Extract word/media and ppt/media from every input document into output/<document name>."
+        description_ru: "Сохранить все word/media и ppt/media в output/<имя документа>."
+        service: "system_core.services.image_optimizer_service:run_cli_for_input"
+        kind: "safe"
+        parameters:
+          command: "extract-media"
+
+maintenance_operations:
+  - id: doctor
+    title: "Doctor"
+    title_ru: "Doctor: проверка"
+    description: "Check portable runtime, GUI dependencies, manifest, themes, and command encodings."
+    description_ru: "Проверить portable runtime, GUI-зависимости, манифест, темы и кодировку командных файлов."
+    service: "system_core.services.image_optimizer_service:run_doctor"
+    kind: "safe"
+
+  - id: cleanup_input_output
+    title: "Clear I/O"
+    title_ru: "Очистить I/O"
+    description: "Delete contents of managed input and output folders, keeping folder structure."
+    description_ru: "Удалить содержимое управляемых input и output, сохранив сами папки."
+    service: "system_core.services.image_optimizer_service:cleanup_input_output"
+    kind: "dangerous"
