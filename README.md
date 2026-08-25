@@ -8,7 +8,7 @@
 - [Direct download](https://audion.dev/get/office-image-optimizer/1.7.1/Audion_Office_Image_Optimizer_v1.7.1_Full.zip) — unmetered, no rate limits
 - [Project page](https://audion.dev/downloads/office-image-optimizer) — every version and how to install
 
-![The program window](docs/screenshot.png)
+<img src="docs/screenshot.png" alt="The program window" width="560">
 
 `SHA-256: da4ecb5aee1b134f782a6842f21c20176735601989fa69a25d53833da29f77a3`
 
