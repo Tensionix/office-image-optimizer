@@ -1,14 +1,19 @@
 # Audion Office Image Optimizer
 
 <!-- audion:release -->
-[![Windows](https://img.shields.io/badge/Windows-10%20%7C%2011-0b6db8?style=flat-square&logo=windows&logoColor=white)](https://audion.dev/downloads/office-image-optimizer) [![Release](https://img.shields.io/github/v/release/Tensionix/office-image-optimizer?style=flat-square&label=release&color=e08a63)](https://github.com/Tensionix/office-image-optimizer/releases/latest) [![Downloads](https://img.shields.io/github/downloads/Tensionix/office-image-optimizer/total?style=flat-square&label=downloads&color=5fd08a)](https://github.com/Tensionix/office-image-optimizer/releases) [![License](https://img.shields.io/github/license/Tensionix/office-image-optimizer?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600)](https://github.com/Tensionix/office-image-optimizer/blob/main/LICENSE)
+<p align="center">
+  <a href="https://audion.dev/downloads/office-image-optimizer"><img alt="Windows" src="https://img.shields.io/badge/Windows-10%20%7C%2011-0b6db8?style=flat-square&logo=windows&logoColor=white"></a>
+  <a href="https://github.com/Tensionix/office-image-optimizer/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Tensionix/office-image-optimizer?style=flat-square&label=release&color=e08a63"></a>
+  <a href="https://github.com/Tensionix/office-image-optimizer/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/Tensionix/office-image-optimizer/total?style=flat-square&label=downloads&color=5fd08a"></a>
+  <a href="https://github.com/Tensionix/office-image-optimizer/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/office-image-optimizer?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
+</p>
 
 **Version 1.7.1** · 2026-08-25 · 104.0 MB
 
 - [Direct download](https://audion.dev/get/office-image-optimizer/1.7.1/Audion_Office_Image_Optimizer_v1.7.1_Full.zip) — unmetered, no rate limits
 - [Project page](https://audion.dev/downloads/office-image-optimizer) — every version and how to install
 
-<img src="docs/screenshot.png" alt="The program window" width="560">
+<p align="center"><img src="docs/screenshot.png" alt="The program window" width="560"></p>
 
 `SHA-256: da4ecb5aee1b134f782a6842f21c20176735601989fa69a25d53833da29f77a3`
 
