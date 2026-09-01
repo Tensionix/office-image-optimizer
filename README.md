@@ -8,96 +8,66 @@
   <a href="https://github.com/Tensionix/office-image-optimizer/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/office-image-optimizer?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
 </p>
 
-**Version 1.7.2** · 2026-09-01 · 3.8 MB
+**Version 1.7.2** · 2026-09-02 · 103.7 MB
 
-- [Direct download](https://dl.audion.dev/office-image-optimizer/1.7.2/Audion_Office_Image_Optimizer_v1.7.2.zip) — unmetered, no rate limits
+- [Direct download](https://audion.dev/get/office-image-optimizer/1.7.2/Audion_Office_Image_Optimizer_v1.7.2_Full.zip) — unmetered, no rate limits
 - [Project page](https://audion.dev/downloads/office-image-optimizer) — every version and how to install
 
 <p align="center"><img src="docs/screenshot.png" alt="The program window" width="560"></p>
 
-`SHA-256: 5a36cc10a9adff212ad1dd76b3353bf54b4dcbf30b34fafc8d248cb94a4f3c0f`
+`SHA-256: 5c6a5b2ad834f5cff590937e9700790e51160efb99b1bc8ac2280ef78dcb7765`
 
 ---
 
 An **Audion** tool, published by [Tensionix](https://github.com/Tensionix).
 <!-- /audion:release -->
 
-Portable project for processing embedded raster images inside Microsoft Office `DOCX` and `PPTX` files.
 
-Current project layout:
+[Русский](README_RU.md) · [User Guide](USER_GUIDE_EN.md)
 
-- `system_core\app\` contains the Python application code;
-- `runtime\` contains the embedded Python runtime;
-- `config\` contains defaults and ICC profiles;
-- `GitHub\` contains the main project documentation for releases and repository pages.
+Processes raster images **inside** Word documents and PowerPoint presentations,
+without taking the document apart.
 
-Main launchers in the project root:
+## Why It Exists
 
-- `launcher_project.cmd` - English launcher
-- `launcher_project_picker.cmd` - English launcher with file picker
-- `launcher_project_ru.cmd` - Russian launcher
-- `launcher_project_picker_ru.cmd` - Russian launcher with file picker
-- `launcher_gui.cmd` - desktop GUI shell over the existing CLI
+A document with photographs weighs a hundred megabytes because every image inside
+it is a phone picture at full resolution. It opens slowly, will not go by email,
+and behaves unpredictably in print.
 
-Service launchers remain English-only:
+The usual approach is to extract the images, process them, and put them back. That
+approach loses everything: position, text wrapping, captions, anchoring to the
+paragraph.
 
-- `builder_main.cmd` - build and packaging tools
-- `launcher_tools.cmd` - service, licensing, and release tools
+This program works on the images **in place**: the document stays the same
+document, and only what is inside the pictures changes.
 
-Python entry point:
+## Principles
 
-- `runtime\python.exe -m app --help`
-- `runtime\python.exe -m app scan "input\file.docx"`
-- `runtime\python.exe -m app batch "input\file.docx" --mode hard --preset presentation`
-- `runtime\python.exe -m app fit-size "input\file.docx" --target-mb 20`
-- `runtime\python.exe -m app extract-media "input\file.docx"`
+**The layout is untouched.** Position, size on the page, wrapping, anchoring — all
+stay as they were. Pixels change, markup does not.
 
-GUI optimization choice:
+**The colour profile is chosen explicitly.** As in the other Audion programs: one
+thing for screen, another for print, and a person decides which.
 
-- `Standard resolutions`:
-  - `1920x1080` - ordinary document;
-  - `2560x1440` - presentations;
-  - `3840x2160` - print / archive.
-- `JPEG quality` - the shared compression lever for all GUI optimization modes, default `82`.
-- `Custom size` - manual width/height for stronger or non-standard compression.
-- `Fit to size` - a separate automatic operation for targets such as `20 MB`.
+**The source is not modified.** The result is written separately.
 
-Standard resolution mode always runs `HARD`. Custom size mode exposes width/height number fields, `SAFE` / `HARD`, and the tiny-PNG override, which defaults to `400x400`.
+## Next
 
-`Fit to size` always uses `HARD JPG`: it first lowers JPEG quality to `75`, then reduces resolution down to `1920x1080`, then lowers quality to `65`, then tries `1600x900` and `1280x720`. Portrait images automatically receive rotated limits, for example `1920x1080` becomes `1080x1920`.
+* [User Guide](USER_GUIDE_EN.md) — step by step.
 
-Reports include document size, embedded media size, decoded-size estimate, format summary, largest image parts, and per-image recommendations.
+---
 
-The GUI layer is focused on clear automatic workflows:
+## Technical Reference
 
-- inspect what is inside DOCX/PPTX files;
-- optimize Office files through a clear resolution choice;
-- fit a file under a target size in MB;
-- normalize images to sRGB or CMYK;
-- extract `word/media` and `ppt/media` into `output\<document-name>\`.
-- choose a Source file/folder and a Target folder directly in the Workbench.
+### Layout
 
-## Canonical Workbench labels
+```
+system_core\app\   the code
+runtime\           embedded Python
+config\            defaults and colour profiles
+```
 
-The Workbench is the shared top-level routing block used by Audion NiceGUI projects. It contains the `Source` and `Target` address rows and these exact action labels: `Source`, `Add file...`, `Target`, `Reset`, `Delete`, and `List`.
+### Workbench Naming
 
-`Source` can be one `DOCX`/`PPTX` file or a folder. `Target` is the results folder. Every operation uses the paths selected in the Workbench; operation screens do not duplicate input/output path fields. `Reset` restores the project `input` and `output` routes.
-
-The ordinary GUI hides technical image details. Standard resolutions run in `HARD`; safe optimization is available only in the manual `Custom size` mode.
-
-Cleanup is intentionally narrower than normal I/O: it clears only the managed project `input` and `output` folders.
-
-Interactive CLI/TUI paths such as `SAFE ASK` remain expert routes and are not the primary GUI workflow.
-
-GUI adaptation notes and smoke gates are documented in:
-
-- `docs\GUI_TEMPLATE_ADAPTATION_NOTES_RU.md`
-
-Main GitHub materials:
-
-- `GitHub\README.md`
-- `GitHub\README_RU.md`
-- `GitHub\Release Description (Audion Office Image Optimizer).md`
-- `GitHub\source_docs\`
-
-For normal use, keep the source document until the optimized copy has been opened and visually checked in the target Office application.
+One shared vocabulary across all Audion projects: **Source**, **Add file…**,
+**Target**, **Reset**, **Delete**, **List**.
