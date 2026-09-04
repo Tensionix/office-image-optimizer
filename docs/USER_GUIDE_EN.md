@@ -1,5 +1,17 @@
 # Audion Office Image Optimizer - User Guide
 
+**Contents**
+
+- [Start](#start)
+- [Prepare Input](#prepare-input)
+- [Run Optimization](#run-optimization)
+- [Review Results](#review-results)
+- [Workbench And Paths](#workbench-and-paths)
+- [Launchers And Encoding](#launchers-and-encoding)
+- [Safe Maintenance](#safe-maintenance)
+- [Troubleshooting](#troubleshooting)
+- [Release Check](#release-check)
+
 Audion Office Image Optimizer reduces embedded image weight in office documents while preserving a controlled output copy and a readable processing report.
 
 ## Start

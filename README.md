@@ -10,7 +10,7 @@
 
 **Version 1.7.2** · 2026-09-04 · 103.8 MB
 
-- [Direct download](https://dl.audion.dev/office-image-optimizer/1.7.2/Audion_Office_Image_Optimizer_v1.7.2_Full.zip) — unmetered, no rate limits
+- [Direct download](https://audion.dev/get/office-image-optimizer/1.7.2/Audion_Office_Image_Optimizer_v1.7.2_Full.zip) — unmetered, no rate limits
 - [Project page](https://audion.dev/downloads/office-image-optimizer) — every version and how to install
 
 <p align="center"><img src="docs/screenshot.png" alt="The program window" width="560"></p>
@@ -23,7 +23,16 @@ An **Audion** tool, published by [Tensionix](https://github.com/Tensionix).
 <!-- /audion:release -->
 
 
-[Русский](README_RU.md) · [User Guide](USER_GUIDE_EN.md)
+[Русский](Docs/README_RU.md) · [User Guide](Docs/USER_GUIDE_EN.md)
+
+**Contents**
+
+- [Why It Exists](#why-it-exists)
+- [Principles](#principles)
+- [Next](#next)
+- [Technical Reference](#technical-reference)
+  - [Layout](#layout)
+  - [Workbench Naming](#workbench-naming)
 
 Processes raster images **inside** Word documents and PowerPoint presentations,
 without taking the document apart.
@@ -53,7 +62,7 @@ thing for screen, another for print, and a person decides which.
 
 ## Next
 
-* [User Guide](USER_GUIDE_EN.md) — step by step.
+* [User Guide](Docs/USER_GUIDE_EN.md) — step by step.
 
 ---
 

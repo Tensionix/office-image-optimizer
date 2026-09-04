@@ -2,6 +2,15 @@
 
 [Русский](README_RU.md) · [User Guide](USER_GUIDE_EN.md)
 
+**Contents**
+
+- [Why It Exists](#why-it-exists)
+- [Principles](#principles)
+- [Next](#next)
+- [Technical Reference](#technical-reference)
+  - [Layout](#layout)
+  - [Workbench Naming](#workbench-naming)
+
 Processes raster images **inside** Word documents and PowerPoint presentations,
 without taking the document apart.
 
