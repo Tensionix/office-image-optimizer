@@ -8,14 +8,14 @@
   <a href="https://github.com/Tensionix/office-image-optimizer/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/Tensionix/office-image-optimizer?style=flat-square&color=5fd08a&logo=apache&logoColor=white&cacheSeconds=3600"></a>
 </p>
 
-**Version 1.7.2** · 2026-09-04 · 103.8 MB
+**Version 1.7.2** · 2026-09-04 · 3.8 MB
 
-- [Direct download](https://audion.dev/get/office-image-optimizer/1.7.2/Audion_Office_Image_Optimizer_v1.7.2_Full.zip) — unmetered, no rate limits
+- [Direct download](https://dl.audion.dev/office-image-optimizer/1.7.2/Audion_Office_Image_Optimizer_v1.7.2.zip) — unmetered, no rate limits
 - [Project page](https://audion.dev/downloads/office-image-optimizer) — every version and how to install
 
 <p align="center"><img src="docs/screenshot.png" alt="The program window" width="560"></p>
 
-`SHA-256: 15de398ac21d9e5aad196717905bfa644ce2a1d12c532da7e56dac01263cfed7`
+`SHA-256: a36e19715a7b9cca6225f93a288ea06d3cc622c2e9a2156e6d533df7341db1c3`
 
 ---
 
