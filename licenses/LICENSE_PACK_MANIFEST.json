@@ -1,36 +1,36 @@
 {
   "schema": "audion.build_licenses.pack_manifest.v1",
-  "generated_utc": "2026-09-04T02:31:04Z",
-  "run_id": "20260904T023055Z_audion-office-image-optimizer_eccfdb88",
+  "generated_utc": "2026-09-18T02:57:38Z",
+  "run_id": "20260918T025731Z_audion-office-image-optimizer_2da96cf0",
   "project_id": "audion-office-image-optimizer",
   "project_name": "Audion Office Image Optimizer",
-  "scan_root": "S:\\Release\\Audion Office Image Optimizer",
-  "output_dir": "S:\\Release\\Audion Office Image Optimizer\\licenses",
+  "scan_root": "S:\\Releases\\Audion Office Image Optimizer",
+  "output_dir": "S:\\Releases\\Audion Office Image Optimizer\\licenses",
   "files": [
     {
       "name": "THIRD_PARTY_NOTICES.txt",
-      "sha256": "9be14edc5f2566e67a38d82672ff4ec45470e3f629d2a3cf108a0533204888e1",
-      "size": 525604
+      "sha256": "43fe23554f9bf5ddda4176f17b12b08afdd5aedc2f6f80620e58a766b2178343",
+      "size": 525594
     },
     {
       "name": "SOURCE_CODE_AVAILABILITY.txt",
-      "sha256": "02599341f416abdc2be8841e79b7da455c0cce0854917c404266009ce42df92c",
+      "sha256": "6ffb50973e7e63f033e6c4ef27933be3bee277bbd49249c689a72e688d83ce67",
       "size": 1240
     },
     {
       "name": "COMPONENTS.json",
-      "sha256": "419a832391a12e4d36ba236d9902a7eef7d3008f93943f971f145a6066304bea",
-      "size": 143720
+      "sha256": "e288466e52162fa48e08ca466082d4427a6a8aa6dbbd06aa184702058b1ba956",
+      "size": 145211
     },
     {
       "name": "_records.json",
-      "sha256": "3b4ec64c73f40f07b630a6196126bfed851ef576d1add98151ced4237ba2fb9e",
-      "size": 35296
+      "sha256": "494d09ce956744047e1b2d46d378c3d257a8e81796ff0178e5f0e4a969a5e2c9",
+      "size": 35673
     },
     {
       "name": "LICENSE_SCAN_REPORT.md",
-      "sha256": "e1b6b4dec104f23a400d37957dd53a4234d4ea37a4c55c38692f7ce4e8cf909b",
-      "size": 6635
+      "sha256": "99eb7fc65657b7f9c10658a39051099f0f70d51320bf4819b6fc437e1f8c2275",
+      "size": 6707
     }
   ]
 }
